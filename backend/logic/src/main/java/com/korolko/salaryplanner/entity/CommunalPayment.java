@@ -1,5 +1,8 @@
 package com.korolko.salaryplanner.entity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +10,7 @@ public class CommunalPayment implements Payment {
 
     private Map<CommunalType, Double> payments = new HashMap<>();
     private final static double EMPTY_VALUE = 0;
+    private Logger logger = LoggerFactory.getLogger(CommunalPayment.class);
 
     public CommunalPayment() {
         initPayments();
@@ -20,6 +24,7 @@ public class CommunalPayment implements Payment {
     }
 
     public void changeMetric(CommunalType type, double newValue) {
+        logger.info("Communal " + type + " payment changed to " + newValue);
         payments.put(type, newValue);
     }
 
